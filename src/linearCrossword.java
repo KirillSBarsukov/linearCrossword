@@ -9,22 +9,21 @@ import java.util.*;
 public class linearCrossword {
 
     //constants
-    static final int MINIMUM_ROWS = 5;
-    static final int MAXIMUM_ROWS = 10;
-    static final int COLUMNS = 10;
+    static final private int MINIMUM_ROWS = 5;
+    static final private int MAXIMUM_ROWS = 10;
+    static final private int COLUMNS = 10;
     static Scanner input = new Scanner(System.in);
     static Random random = new Random();
 
     //the first two dimensional array. Not clarified yet.
-    static int [] [] mainArray;
-
+    static char [][] mainArrayForWords;
 
     public static void main(String[] sync) {
 
         displayHelloMessage();
-        getFirstInformation();
-        //mainArray = new int[numberOfRows][COLUMNS];
-
+        int numberOfRows = getFirstInformation();
+        System.out.println("Test" + numberOfRows);
+        mainArrayForWords = new char[numberOfRows][COLUMNS];
     }
 
     private static void displayHelloMessage() {
@@ -36,15 +35,14 @@ public class linearCrossword {
 
     }//end of the displayHelloMessage method
 
-    private static byte getFirstInformation() {
-
-        byte numberOfRows;
+    private static int getFirstInformation() {
+        int numberOfRows;
         System.out.println("How many rows do you need?");
         System.out.printf("It must be between %d and %d\n", MINIMUM_ROWS, MAXIMUM_ROWS);
 
         do{
             //prompt for number of worked hours of the user
-            numberOfRows = input.nextByte();
+            numberOfRows = input.nextInt();
             //get the worked hours of the user
 
             if(numberOfRows < MINIMUM_ROWS || numberOfRows > MAXIMUM_ROWS)
