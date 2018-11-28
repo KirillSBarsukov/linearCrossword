@@ -8,17 +8,22 @@ import java.util.*;
 
 public class linearCrossword {
 
-
     //constants
-    static final int COLUMNS = 10;
     static final int MINIMUM_ROWS = 5;
     static final int MAXIMUM_ROWS = 10;
+    static final int COLUMNS = 10;
     static Scanner input = new Scanner(System.in);
     static Random random = new Random();
 
+    //the first two dimensional array. Not clarified yet.
+    static int [] [] mainArray;
+
+
     public static void main(String[] sync) {
+
         displayHelloMessage();
         getFirstInformation();
+        //mainArray = new int[numberOfRows][COLUMNS];
 
     }
 
@@ -32,6 +37,7 @@ public class linearCrossword {
     }//end of the displayHelloMessage method
 
     private static byte getFirstInformation() {
+
         byte numberOfRows;
         System.out.println("How many rows do you need?");
         System.out.printf("It must be between %d and %d\n", MINIMUM_ROWS, MAXIMUM_ROWS);
@@ -48,4 +54,6 @@ public class linearCrossword {
         return numberOfRows;
     }//end of the getFirstInformation method
 
+    //private static
 }
+
