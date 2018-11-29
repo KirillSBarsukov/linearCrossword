@@ -12,18 +12,20 @@ public class linearCrossword {
     static final private int MINIMUM_ROWS = 5;
     static final private int MAXIMUM_ROWS = 10;
     static final private int COLUMNS = 10;
-    static Scanner input = new Scanner(System.in);
+    static private Scanner input = new Scanner(System.in);
     static Random random = new Random();
 
     //the first two dimensional array. Not clarified yet.
-    static char [][] mainArrayForWords;
+    static private char [][] mainArrayForWords;
 
     public static void main(String[] sync) {
 
         displayHelloMessage();
         int numberOfRows = getFirstInformation();
-        System.out.println("Test" + numberOfRows);
+        //System.out.println("Test" + numberOfRows);
+
         mainArrayForWords = new char[numberOfRows][COLUMNS];
+        fillWithNames(mainArrayForWords,numberOfRows);
     }
 
     private static void displayHelloMessage() {
@@ -46,12 +48,25 @@ public class linearCrossword {
             //get the worked hours of the user
 
             if(numberOfRows < MINIMUM_ROWS || numberOfRows > MAXIMUM_ROWS)
-                System.out.printf("INVALID INPUT!! The number of rows MUST be must be between %d and %d\n",MINIMUM_ROWS, MAXIMUM_ROWS);
+                System.out.printf("INVALID INPUT!! The number of rows MUST be between %d and %d\n",MINIMUM_ROWS, MAXIMUM_ROWS);
 
         }while( numberOfRows < MINIMUM_ROWS || numberOfRows > MAXIMUM_ROWS);
         return numberOfRows;
     }//end of the getFirstInformation method
 
-    //private static
+    private static void fillWithNames(char [][] mainArrayForWords, int numberOfRows) {
+
+        String userWords;
+        for(int i = 0; i<numberOfRows; i++) {
+            do{
+                System.out.println("Please input a word");
+                userWords = input.nextLine();
+
+                if(userWords.length() > COLUMNS) {
+                    System.out.printf("INVALID INPUT!! The word more than size of line. A length of word  MUST be not more than %d",COLUMNS);
+                }//end of it
+            }while(userWords.length() > COLUMNS);
+        }//end of the for loop
+    }//end of the fillWithNames method
 }
 
