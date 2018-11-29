@@ -58,6 +58,7 @@ public class linearCrossword {
     private static void fillWithNames(char[][] mainArrayForWords, int numberOfRows) {
 
         String userWords; //local variable
+        input.nextLine(); //clear the buffer
         for (int i = 0; i < numberOfRows; i++) {
 
             do {
