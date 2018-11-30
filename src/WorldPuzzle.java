@@ -16,38 +16,41 @@ public class WorldPuzzle {
     static final private int MAXIMUM_ROWS = 10;
     static final private int MINIMUM_COLUMNS = 5;
     static final private int MAXIMUM_COLUMNS = 10;
-
+    //declare Scanner to get information from user and Random to generate random numbers
     static private Scanner input = new Scanner(System.in);
     static private Random random = new Random();
 
-    //the first two dimensional array. Not clarified yet.
+    //the first two dimensional array. Not clarified yet. Still something wrong with it. Can I make it local??
     static private char[][] mainArrayForWords;
 
     public static void main(String[] sync) {
-
+        //displayMessage method
         displayMessage();
+        //Displays size of the puzzle. For example, 5 x 5, 7 x 7 or 10 x 10
         int sizeOfPuzzle = getFirstInformation();
-        //System.out.println("Test" + numberOfRows);
-
         mainArrayForWords = new char[sizeOfPuzzle][sizeOfPuzzle]; //everything is working without it. Maybe delete
+        //fillWithNames method get input from user and store it in 2d array mainArrayForWords[][]
         fillWithNames(mainArrayForWords, sizeOfPuzzle);
+        displayWords(mainArrayForWords, sizeOfPuzzle);
+        //fillEmptyCells
         fillEmptyCells(mainArrayForWords, sizeOfPuzzle);
         displayWords(mainArrayForWords, sizeOfPuzzle);
     }
 
+    /**
+     * The method displayMessage() shows first message and explains the purpose of the program.
+     */
     private static void displayMessage() {
 
-        System.out.println("-----------------------------------------------------------------------");
-        System.out.println("-----Hello! I will help you to generate a simple world puzzle----------");
-        System.out.println("-----I only need to know a size of the puzzle and words----------------");
-        System.out.println("-----------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------");
+        System.out.println("-----This program creates a simple word puzzle----------");
+        System.out.println("--------------------------------------------------------");
 
     }//end of the displayHelloMessage method
 
     private static int getFirstInformation() {
         int sizeOfPuzzle;
-        System.out.println("Choose the size of the puzzle");
-        System.out.printf("It must be between %d x %d and %d x %d\n", MINIMUM_ROWS, MINIMUM_COLUMNS, MAXIMUM_ROWS, MAXIMUM_COLUMNS);
+        System.out.printf("What is the size of the puzzle you would like to create (>=%d and <= %d)\n", MINIMUM_ROWS, MAXIMUM_COLUMNS);
 
         do {
             //prompt for number of worked hours of the user
@@ -55,11 +58,14 @@ public class WorldPuzzle {
             //get the worked hours of the user
 
             if (sizeOfPuzzle < MINIMUM_ROWS || sizeOfPuzzle > MAXIMUM_ROWS)
-                System.out.printf("INVALID INPUT!! The number of rows MUST be between %d and %d.\n", MINIMUM_ROWS, MAXIMUM_ROWS);
+                System.out.printf("******Invalid size, MUST be >= %d and <= %d.\n", MINIMUM_ROWS, MAXIMUM_COLUMNS);
 
         } while (sizeOfPuzzle < MINIMUM_ROWS || sizeOfPuzzle > MAXIMUM_ROWS);
         input.nextLine(); //clear the buffer
         System.out.printf("Thank you! We will generate %d x %d size for the puzzle.\n",sizeOfPuzzle, sizeOfPuzzle);
+        System.out.println("-----------------------------------------------------------");
+        System.out.printf("--Enter %d words, each word no more than %d characters long--\n", sizeOfPuzzle, sizeOfPuzzle);
+        System.out.println("-----------------------------------------------------------");
         return sizeOfPuzzle;
     }//end of the getFirstInformation method
 
@@ -70,11 +76,11 @@ public class WorldPuzzle {
         for (int i = 0; i < sizeOfPuzzle; i++) {
 
             do {
-                System.out.printf("Please input a word %d: ", i + 1);
+                System.out.printf("Please enter word %d to add to the puzzle: ", i + 1);
                 userWords = input.nextLine();
                 userUpperWords = userWords.toUpperCase();
                 if (userUpperWords.length() > sizeOfPuzzle) {
-                    System.out.printf("INVALID INPUT!! The word more than size of line. A length of word  MUST be not more than %d\n", sizeOfPuzzle);
+                    System.out.printf("*****Word cannot fit in the puzzle. It MUST be <= %d characters in length\n", sizeOfPuzzle);
                 }//end of it
             } while (userUpperWords.length() > sizeOfPuzzle);
 
@@ -86,36 +92,38 @@ public class WorldPuzzle {
 
     private static void displayWords(char [][] mainArrayForWords, int sizeOfPuzzle) {
 
-        System.out.printf("--------A list of words in array %d x %d-------------\n", sizeOfPuzzle, sizeOfPuzzle);
+        System.out.println("-------------The words to search -----------");
         for (int i = 0; i < sizeOfPuzzle; i++) {
             for (int a = 0; a < sizeOfPuzzle; a++) {
                 System.out.printf("%c ", mainArrayForWords[i][a]);
             }//for a
             System.out.println(); //display words line by line
         }//for i
-    }
+    }//end of the displayWords method
 
+    /**
+     * The method take characters from pre-declared array and fill them empty cells in 2d array mainArrayForWords[][]
+     * @param mainArrayForWords
+     * @param sizeOfPuzzle
+     */
     private static void fillEmptyCells(char[][] mainArrayForWords, int sizeOfPuzzle)
     {
         char[] randomCharacters ={'A', 'U', 'C', 'M', 'E', 'S', 'R', 'Z', 'T', 'I', 'K', 'W', 'B', 'N', 'L', 'Q'};
         int randomCharacter;
         int size = randomCharacters.length; //size is initialized to the number of characters in the list
 
-
         //iterate through all rows in the 2d array
         for(int i= 0; i < sizeOfPuzzle; i++){
             //iterate through all columns in each row
             for(int a= 0; a < sizeOfPuzzle; a++){
-
                 randomCharacter = random.nextInt(size);//gets a random number in the range 0 to (size-1)
-                //System.out.println(randomCharacters[randomCharacter]);//print the character at this position
-                //if the element is the null character, replace it with *
-                if (mainArrayForWords[i][a] == '\u0000')
+                //if the element is the null character, replace it with random character from local array randomCharacters[]
+                if (mainArrayForWords[i][a] == '\u0000') {
                     mainArrayForWords[i][a] = randomCharacters[randomCharacter];
-                    //int randomNumber = randomGenerator.nextInt(50) + 1;
+                }//if
             }//for a
         }//for i
-    }//fillUnusedElements
+    }//end of the fillEmptyCells method
 }
 
 
