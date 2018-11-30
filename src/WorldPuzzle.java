@@ -18,7 +18,7 @@ public class WorldPuzzle {
     static final private int MAXIMUM_COLUMNS = 10;
 
     static private Scanner input = new Scanner(System.in);
-    static Random random = new Random();
+    static Random randomGenerator = new Random();
 
     //the first two dimensional array. Not clarified yet.
     static private char[][] mainArrayForWords;
@@ -77,6 +77,7 @@ public class WorldPuzzle {
                     System.out.printf("INVALID INPUT!! The word more than size of line. A length of word  MUST be not more than %d\n", sizeOfPuzzle);
                 }//end of it
             } while (userWords.length() > sizeOfPuzzle);
+
             for (int a = 0; a < userWords.length(); a++) {
                 mainArrayForWords[i][a] = userWords.charAt(a);
             }
