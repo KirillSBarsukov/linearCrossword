@@ -12,10 +12,10 @@ import java.util.*;
 public class WorldPuzzle {
 
     //constants
-    static final private int MINIMUM_ROWS = 5;
-    static final private int MAXIMUM_ROWS = 10;
-    static final private int MINIMUM_COLUMNS = 5;
-    static final private int MAXIMUM_COLUMNS = 10;
+
+    static final private int MINIMUM_SIZE = 5;
+    static final private int MAXIMUM_SIZE= 10;
+
     //declare Scanner to get information from user and Random to generate random numbers
     static private Scanner input = new Scanner(System.in);
     static private Random random = new Random();
@@ -50,17 +50,17 @@ public class WorldPuzzle {
 
     private static int getFirstInformation() {
         int sizeOfPuzzle;
-        System.out.printf("What is the size of the puzzle you would like to create (>=%d and <= %d)\n", MINIMUM_ROWS, MAXIMUM_COLUMNS);
+        System.out.printf("What is the size of the puzzle you would like to create (>=%d and <= %d)\n", MINIMUM_SIZE, MAXIMUM_SIZE);
 
         do {
             //prompt for number of worked hours of the user
             sizeOfPuzzle = input.nextInt();
             //get the worked hours of the user
 
-            if (sizeOfPuzzle < MINIMUM_ROWS || sizeOfPuzzle > MAXIMUM_ROWS)
-                System.out.printf("******Invalid size, MUST be >= %d and <= %d.\n", MINIMUM_ROWS, MAXIMUM_COLUMNS);
+            if (sizeOfPuzzle < MINIMUM_SIZE || sizeOfPuzzle > MAXIMUM_SIZE)
+                System.out.printf("******Invalid size, MUST be >= %d and <= %d.\n", MINIMUM_SIZE, MAXIMUM_SIZE);
 
-        } while (sizeOfPuzzle < MINIMUM_ROWS || sizeOfPuzzle > MAXIMUM_ROWS);
+        } while (sizeOfPuzzle < MINIMUM_SIZE || sizeOfPuzzle > MAXIMUM_SIZE);
         input.nextLine(); //clear the buffer
         System.out.printf("Thank you! We will generate %d x %d size for the puzzle.\n",sizeOfPuzzle, sizeOfPuzzle);
         System.out.println("-----------------------------------------------------------");
