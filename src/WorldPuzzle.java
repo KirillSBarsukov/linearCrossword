@@ -85,7 +85,8 @@ public class WorldPuzzle {
             } while (userUpperWords.length() > sizeOfPuzzle);
 
             for (int a = 0; a < userUpperWords.length(); a++) {
-                mainArrayForWords[i][a] = userUpperWords.charAt(a);
+                //a+1 system moves every word from 0 position to 1 position
+                mainArrayForWords[i][a+1] = userUpperWords.charAt(a);
             }
         }//end of the for loop
     }//end of the fillWithNames method
