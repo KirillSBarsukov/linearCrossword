@@ -21,6 +21,7 @@ public class WorldPuzzle {
 
     //the first two dimensional array. Not clarified yet. Still something wrong with it. Can I make it local??
     static private char[][] mainArrayForWords;
+    static private String [] arrayForWholeWords;
 
     public static void main(String[] sync) {
         //displayMessage method
@@ -30,11 +31,11 @@ public class WorldPuzzle {
         mainArrayForWords = new char[sizeOfPuzzle][sizeOfPuzzle]; //everything is working without it. Maybe delete
         //fillWithNames method get input from user and store it in 2d array mainArrayForWords[][]
         fillWithNames(mainArrayForWords, sizeOfPuzzle);
-        displayPuzzle(mainArrayForWords, sizeOfPuzzle);
         //fillEmptyCells
         fillEmptyCells(mainArrayForWords, sizeOfPuzzle);
         //display the puzzle
         displayPuzzle(mainArrayForWords, sizeOfPuzzle);
+        displayWords(arrayForWholeWords);
     }
 
     /**
@@ -78,6 +79,7 @@ public class WorldPuzzle {
      */
     private static void fillWithNames(char[][] mainArrayForWords, int sizeOfPuzzle) {
 
+        arrayForWholeWords = new String[sizeOfPuzzle];
         String userWords, userUpperWords; //local variable
         int randomCharacter;
         for (int i = 0; i < sizeOfPuzzle; i++) {
@@ -85,7 +87,9 @@ public class WorldPuzzle {
             do {
                 System.out.printf("Please enter word %d to add to the puzzle: ", i + 1);
                 userWords = input.nextLine();
+                arrayForWholeWords[i] = userWords.toUpperCase();
                 userUpperWords = userWords.toUpperCase();
+
                 if (userUpperWords.length() > sizeOfPuzzle) {
                     System.out.printf("*****Word cannot fit in the puzzle. It MUST be <= %d characters in length\n", sizeOfPuzzle);
                 }//end of it
@@ -108,7 +112,7 @@ public class WorldPuzzle {
      */
     private static void displayPuzzle(char[][] mainArrayForWords, int sizeOfPuzzle) {
 
-        System.out.println("-------------The words to search  -----------");
+        System.out.println("-------------Puzzle-----------");
         for (int i = 0; i < sizeOfPuzzle; i++) {
             for (int a = 0; a < sizeOfPuzzle; a++) {
                 System.out.printf("%c ", mainArrayForWords[i][a]);
@@ -127,7 +131,6 @@ public class WorldPuzzle {
         char[] randomCharacters = {'A', 'U', 'C', 'M', 'E', 'S', 'R', 'Z', 'T', 'I', 'K', 'W', 'B', 'N', 'L', 'Q'};
         int randomCharacter;
         int size = randomCharacters.length; //size is initialized to the number of characters in the list
-
         //iterate through all rows in the 2d array
         for (int i = 0; i < sizeOfPuzzle; i++) {
             //iterate through all columns in each row
@@ -141,4 +144,15 @@ public class WorldPuzzle {
         }//for i
     }//end of the fillEmptyCells method
 
+    /**
+     * @param arrayForWholeWords the main array to store words
+     */
+    private static void displayWords(String[] arrayForWholeWords) {
+
+        System.out.println("-------------Words-----------");
+        for (int i = 0; i < arrayForWholeWords.length; i++) {
+               System.out.println(arrayForWholeWords[i]);
+
+        }//for i
+    }//end of the displayPuzzle method
 }
