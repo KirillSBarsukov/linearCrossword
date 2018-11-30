@@ -65,21 +65,21 @@ public class WorldPuzzle {
 
     private static void fillWithNames(char[][] mainArrayForWords, int sizeOfPuzzle) {
 
-        String userWords; //local variable
+        String userWords, userUpperWords; //local variable
 
         for (int i = 0; i < sizeOfPuzzle; i++) {
 
             do {
                 System.out.printf("Please input a word %d: ", i + 1);
                 userWords = input.nextLine();
-
-                if (userWords.length() > sizeOfPuzzle) {
+                userUpperWords = userWords.toUpperCase();
+                if (userUpperWords.length() > sizeOfPuzzle) {
                     System.out.printf("INVALID INPUT!! The word more than size of line. A length of word  MUST be not more than %d\n", sizeOfPuzzle);
                 }//end of it
-            } while (userWords.length() > sizeOfPuzzle);
+            } while (userUpperWords.length() > sizeOfPuzzle);
 
-            for (int a = 0; a < userWords.length(); a++) {
-                mainArrayForWords[i][a] = userWords.charAt(a);
+            for (int a = 0; a < userUpperWords.length(); a++) {
+                mainArrayForWords[i][a] = userUpperWords.charAt(a);
             }
         }//end of the for loop
     }//end of the fillWithNames method
@@ -88,7 +88,6 @@ public class WorldPuzzle {
 
         System.out.printf("--------A list of words in array %d x %d-------------\n", sizeOfPuzzle, sizeOfPuzzle);
         for (int i = 0; i < sizeOfPuzzle; i++) {
-
             for (int a = 0; a < sizeOfPuzzle; a++) {
                 System.out.printf("%c ", mainArrayForWords[i][a]);
             }//for a
@@ -98,6 +97,11 @@ public class WorldPuzzle {
 
     private static void fillEmptyCells(char[][] mainArrayForWords, int sizeOfPuzzle)
     {
+        char[] randomCharacters ={'A', 'U', 'C', 'M', 'E', 'S', 'R', 'Z', 'T', 'I', 'K', 'W', 'B', 'N', 'L', 'Q'};
+        int randomNumber;
+        int size = randomCharacters.length; //size is initialized to the number of characters in the list
+
+
         //iterate through all rows in the 2d array
         for(int i= 0; i < sizeOfPuzzle; i++){
             //iterate through all columns in each row
@@ -105,9 +109,9 @@ public class WorldPuzzle {
                 //if the element is the null character, replace it with *
                 if (mainArrayForWords[i][a] == '\u0000')
                     mainArrayForWords[i][a] = '*';
+                    //int randomNumber = randomGenerator.nextInt(50) + 1;
             }//for a
         }//for i
-
     }//fillUnusedElements
 }
 
