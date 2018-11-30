@@ -18,7 +18,7 @@ public class WorldPuzzle {
     static final private int MAXIMUM_COLUMNS = 10;
 
     static private Scanner input = new Scanner(System.in);
-    static Random randomGenerator = new Random();
+    static private Random random = new Random();
 
     //the first two dimensional array. Not clarified yet.
     static private char[][] mainArrayForWords;
@@ -98,7 +98,7 @@ public class WorldPuzzle {
     private static void fillEmptyCells(char[][] mainArrayForWords, int sizeOfPuzzle)
     {
         char[] randomCharacters ={'A', 'U', 'C', 'M', 'E', 'S', 'R', 'Z', 'T', 'I', 'K', 'W', 'B', 'N', 'L', 'Q'};
-        int randomNumber;
+        int randomCharacter;
         int size = randomCharacters.length; //size is initialized to the number of characters in the list
 
 
@@ -106,9 +106,12 @@ public class WorldPuzzle {
         for(int i= 0; i < sizeOfPuzzle; i++){
             //iterate through all columns in each row
             for(int a= 0; a < sizeOfPuzzle; a++){
+
+                randomCharacter = random.nextInt(size);//gets a random number in the range 0 to (size-1)
+                //System.out.println(randomCharacters[randomCharacter]);//print the character at this position
                 //if the element is the null character, replace it with *
                 if (mainArrayForWords[i][a] == '\u0000')
-                    mainArrayForWords[i][a] = '*';
+                    mainArrayForWords[i][a] = randomCharacters[randomCharacter];
                     //int randomNumber = randomGenerator.nextInt(50) + 1;
             }//for a
         }//for i
