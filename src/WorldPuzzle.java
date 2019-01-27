@@ -3,8 +3,8 @@
  * @author Kirill Barsukov
  * @version November 28, 2018
  * The simple word puzzle generator. It requires size (from 5 x 5 to 10 x 10).
- * Based on the size, the system will ask to input words. All words is kept in 2d array.
- * Every word stores in ordered rows in randomly order.
+ * Based on the size, the system will ask to input words. All words are kept in a 2d array.
+ * Every word stores in ordered rows in random order.
  * All the empty cells fill by random characters.
  */
 import java.util.*;
@@ -19,7 +19,7 @@ public class WorldPuzzle {
     static private Scanner input = new Scanner(System.in);
     static private Random random = new Random();
 
-    //the first two dimensional array. Not clarified yet. Still something wrong with it. Can I make it local??
+    //the first 2d dimensional array. Not clarified yet.
     static private char[][] mainArrayForWords;
 
     public static void main(String[] sync) {
@@ -27,7 +27,7 @@ public class WorldPuzzle {
         displayMessage();
         //Displays size of the puzzle. For example, 5 x 5, 7 x 7 or 10 x 10
         int sizeOfPuzzle = getFirstInformation();
-        mainArrayForWords = new char[sizeOfPuzzle][sizeOfPuzzle]; //everything is working without it. Maybe delete
+        mainArrayForWords = new char[sizeOfPuzzle][sizeOfPuzzle];
         //fillWithNames method get input from user and store it in 2d array mainArrayForWords[][]
         fillWithNames(mainArrayForWords, sizeOfPuzzle);
         displayPuzzle(mainArrayForWords, sizeOfPuzzle);
@@ -59,7 +59,7 @@ public class WorldPuzzle {
         do {
             //prompt for number of worked hours of the user
             sizeOfPuzzle = input.nextInt();
-            //get the worked hours of the user
+            //get the worked hours from the user
 
             if (sizeOfPuzzle < MINIMUM_SIZE || sizeOfPuzzle > MAXIMUM_SIZE)
                 System.out.printf("******Invalid size, MUST be >= %d and <= %d.\n", MINIMUM_SIZE, MAXIMUM_SIZE);
@@ -73,7 +73,7 @@ public class WorldPuzzle {
     }//end of the getFirstInformation method
 
     /**
-     * @param mainArrayForWords the main array to store words
+     * @param mainArrayForWords the main array for storing words
      * @param sizeOfPuzzle the number of rows and columns since it is a square array
      */
     private static void fillWithNames(char[][] mainArrayForWords, int sizeOfPuzzle) {
@@ -103,7 +103,7 @@ public class WorldPuzzle {
     }//end of the fillWithNames method
 
     /**
-     * @param mainArrayForWords the main array to store words
+     * @param mainArrayForWords the main array for storing words
      * @param sizeOfPuzzle      the number of rows and columns since it is a square array
      */
     private static void displayPuzzle(char[][] mainArrayForWords, int sizeOfPuzzle) {
@@ -120,7 +120,7 @@ public class WorldPuzzle {
     /**
      * The method take characters from pre-declared array and fill them empty cells in 2d array mainArrayForWords[][]
      *
-     * @param mainArrayForWords the main array to store words
+     * @param mainArrayForWords the main array for storing words
      * @param sizeOfPuzzle      the number of rows and columns since it is a square array
      */
     private static void fillEmptyCells(char[][] mainArrayForWords, int sizeOfPuzzle) {
