@@ -9,7 +9,7 @@
  */
 import java.util.*;
 
-public class WorldPuzzle {
+public class WordPuzzle {
 
     //constants
     static final private int MINIMUM_SIZE = 5;
